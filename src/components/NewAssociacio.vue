@@ -27,7 +27,7 @@
                 <Dialog :visible="visible2" modal header="Perfecte!" :style="{ width: '25rem' }" class="bg-white">
                     <span class="text-surface-500 dark:text-surface-400 block mb-8">L'Associació s'ha creat correctament</span>
                     <div class="flex justify-end gap-2">
-                        <Button type="button" icon="pi pi-check" label="Entesos" @click="visible2 = false" class="create-btn"></Button>
+                        <Button type="button" icon="pi pi-check" label="Entesos" @click="redirectToNoticies" class="create-btn"></Button>
                     </div>
                 </Dialog>
                 <Dialog :visible="visible3" modal header="Error" :style="{ width: '25rem' }" class="bg-white">
@@ -48,7 +48,8 @@ import FloatLabel from 'primevue/floatlabel';
 import Button from 'primevue/button';
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
-import { crearAssociacio } from '../services/comunicationManager';
+import { crearAssociacio } from './../services/comunicationManager';
+import { useRoute, useRouter } from 'vue-router';
 
 const nom = ref(null);
 const desc = ref(null);
@@ -57,6 +58,8 @@ var visible = ref(false);
 var visible2 = ref(false);
 var visible3 = ref(false);
 
+const router = useRouter();
+
 async function newAssociacio() {
     if (!nom.value || !desc.value) {
         visible.value = true;
@@ -64,7 +67,6 @@ async function newAssociacio() {
     }
     loading.value = true;
     try {
-        console.log('Nova Associació:', { nom: nom.value, desc: desc.value });
         await crearAssociacio(nom.value, desc.value);
         visible2.value = true;
     } catch (error) {
@@ -75,7 +77,10 @@ async function newAssociacio() {
     }
 }
 
-
+function redirectToNoticies() {
+    visible2.value = false;
+    router.push('/noticies');
+}
 </script>
 
 

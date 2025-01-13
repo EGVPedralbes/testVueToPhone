@@ -53,17 +53,13 @@ function changeValueDayData(){
   dayData.value=[]
 }
 function onDayClickHandler({ date }) {
-  console.log("Day clicked", date);
-  console.log(attrs.value);
   let auxArray = [];
   attrs.value.forEach((element) => {
     if (new Date(element.dates).toLocaleDateString('en-GB') == new Date(date).toLocaleDateString('en-GB')) {
-      console.log("HOLA ESTOY ENTRANDO")
       auxArray.push(element);
     }
   });
   dayData.value = auxArray;
-  console.log("this is dayDAta", dayData);
   //   if(dayData){
   //     console.log(dayData.popover.label);
   //   }
@@ -73,9 +69,14 @@ function transformEventsToDates(date) {
   date.forEach((element) => {
     attrs.value.push({
       dates: element.date,
-      bar: element.color,
+      bar:{style: {
+        backgroundColor: element.color,
+      }} ,
       link: element.link,
       label: element.label,
+      smDescription: element.subtitol,
+      contingut: element.contingut,
+      
     });
   });
 }
