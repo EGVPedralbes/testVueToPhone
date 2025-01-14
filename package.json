@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^6.2.0",
     "@popperjs/core": "^2.11.8",
     "bcryptjs": "^2.4.3",
     "fronttr2": "file:",
