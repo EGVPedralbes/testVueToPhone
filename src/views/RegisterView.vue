@@ -79,7 +79,7 @@ export default {
             if (validateForm()) {
                 try {
                     const hashedPassword= await hashPassword(form.value.contrasenya)
-                   
+                   alert(URL)
                     const response = await createUser({
                         nom: form.value.nom,
                         cognoms: form.value.cognoms,
