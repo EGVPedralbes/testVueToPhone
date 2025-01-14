@@ -92,7 +92,7 @@ export const createUser = async ({ nom, cognoms, contrasenya, correu, imatge, pe
                 permisos,
             }),
         });
-
+        alert(response.status + " " + response.ok+ " " + response.statusText);
         if (response.ok) {
             const data = await response.json();
             console.log('Usuari creat amb èxit:', data);
