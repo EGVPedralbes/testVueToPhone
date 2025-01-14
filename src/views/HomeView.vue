@@ -7,9 +7,7 @@
             Benvingut a Associa't
           </h1>
           <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-            La plataforma que et permetrà gestionar les teves associacions de forma fàcil i ràpida. 
-            <br>
-            API URL: {{ URL }}
+            L'aplicació que et permetrà gestionar les teves activitats de manera fàcil i ràpida.
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <a href="#" class="custom-button" @click="router.push('/login')">
@@ -27,7 +25,6 @@
 
 <script setup>
 import router from '@/router';
-const URL = import.meta.env.VITE_API_ROUTE;
 </script>
 
 <style scoped>

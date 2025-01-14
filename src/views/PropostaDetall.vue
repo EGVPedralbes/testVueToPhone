@@ -4,7 +4,7 @@
     <h3>{{ proposta?.subtitol || 'Cargando...' }}</h3>
     <p>{{ proposta?.contingut || 'Cargando contenido...' }}</p>
     <p class="author" v-if="proposta?.autor?.nomUsuari">
-      Per {{ proposta.autor.nomUsuari }} el {{ proposta.data }}
+      Per {{ proposta.autor.nomUsuari }}, el {{ proposta.data }}
     </p>
 
     <div class="vote-section">
@@ -16,7 +16,7 @@
 
     <div class="comments-section">
       <h2>Comentaris</h2>
-      <div v-if="comments.length === 0">No hi ha comentaris encara.</div>
+      <div v-if="comments.length === 0">Encara no hi ha comentaris.</div>
       <div v-for="comment in comments" :key="comment.id" class="comment">
         <p><strong>{{ comment.autor.nomUsuari }}</strong></p>
         <p>{{ comment.contingut }}</p>
@@ -58,7 +58,8 @@ const textarea = ref(null);
 const voted = ref(false);
 
 const loggedUsersStore = useLoggedUsers(); // Usamos el store directamente
-const socket = io('http://localhost:3003');
+const URL = import.meta.env.VITE_CHAT_ROUTE
+const socket = io(URL);
 
 onMounted(async () => {
   try {

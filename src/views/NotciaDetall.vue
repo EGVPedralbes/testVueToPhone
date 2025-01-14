@@ -2,13 +2,8 @@
   <div class="main">
     <h1>{{ noticia.titol }}</h1>
     <h3>{{ noticia.subtitol }}</h3>
-    <img :src="noticia.imatge" alt="Imatge de la noticia" />
     <p>{{ noticia.contingut }}</p>
-    <p>{{ noticia.contingut }}</p>
-    <p>{{ noticia.contingut }}</p>
-    <p>{{ noticia.contingut }}</p>
-    <p>{{ noticia.contingut }}</p>
-    <p>{{ noticia.contingut }}</p>
+
     <p class="author">Per {{ noticia.autor }} el {{ noticia.updatedAt }}</p>
     <NavigationBar />
   </div>
@@ -16,14 +11,22 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import noticiesSample from '../assets/noticiesSample.json'
 import NavigationBar from '@/components/NavigationBar.vue';
+import { getNoticies } from '@/services/comunicationManager';
+
 
 const props = defineProps(['id']);
 const noticia = ref({});
-onMounted(() => {
-  //getNoticies()
-  noticia.value = noticiesSample.find(noticia => noticia.id == props.id);
+
+const noticies = ref([]);
+onMounted(async () => {
+  try {
+        noticies.value = await getNoticies();
+        console.log(noticies.value); // Agrega esta línea para ver qué datos llegan
+        noticia.value = noticies.value.find(noticia => noticia.id == props.id);
+    } catch (error) {
+        console.error('Error al obtenir les notícies:', error);
+    }
 
 })
 
