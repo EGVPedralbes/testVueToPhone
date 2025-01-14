@@ -74,6 +74,7 @@ export const createUser = async ({ nom, cognoms, contrasenya, correu, imatge, pe
     try {
         console.log('Dades enviades (abans del hash): ', { nom, cognoms, contrasenya, correu, imatge, permisos });
 
+        alert("fetching to " + URL + "/api/usuari");
 
         console.log('Contrasenya encriptada: ', contrasenya);
 
