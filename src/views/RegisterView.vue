@@ -79,7 +79,6 @@ export default {
             if (validateForm()) {
                 try {
                     const hashedPassword= await hashPassword(form.value.contrasenya)
-                   alert(URL)
                     const response = await createUser({
                         nom: form.value.nom,
                         cognoms: form.value.cognoms,
@@ -89,9 +88,11 @@ export default {
                         permisos: 'user',
                     });
                     if(response.state==true){
+                        alert("to noticies")
                         router.push('/noticies');
                     }
                 } catch (error) {
+                    alert("ERROR:", error)
                     console.error('Error al crear el usuari:', error);
                 }
             }
